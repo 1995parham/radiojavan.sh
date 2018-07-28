@@ -20,12 +20,13 @@ rj-download-() {
         if [ $status -ne 200 ]; then
                 echo $status
                 rm "$name.mp3"
+                return 1
         fi
+        return 0
 }
 
 rj-download() {
-        rj-download- $1 1
-        rj-download- $1 2
+        rj-download- $1 1 || rj-download- $1 2
 }
 
 main() {
