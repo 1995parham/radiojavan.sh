@@ -12,15 +12,20 @@ usage() {
         echo "$(basename $0) [radiojavan music url]"
 }
 
+rj-download-() {
+        echo Host-$2
 
-rj-download() {
-        status=$(curl -# -w "%{http_code}" -o "$name.mp3" "https://host2.rjmusicmedia.com/media/mp3/mp3-256/$1.mp3")
+        status=$(curl -# -w "%{http_code}" -o "$1.mp3" "https://host$2.rjmusicmedia.com/media/mp3/mp3-256/$1.mp3")
 
         if [ $status -ne 200 ]; then
                 echo $status
-                cat "$name.mp3"
                 rm "$name.mp3"
         fi
+}
+
+rj-download() {
+        rj-download- $1 1
+        rj-download- $1 2
 }
 
 main() {
