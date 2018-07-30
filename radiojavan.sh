@@ -35,7 +35,20 @@ main() {
                 exit
         fi
 
-        if [ $# -ne 1 ]; then
+        output_dir="."
+        while getopts 'o:' argv; do
+                case $argv in
+                        o)
+                                output_dir=$OPTARG
+                                ;;
+                esac
+        done
+
+        for i in $(seq 2 1 $OPTIND 2> /dev/null); do
+                shift
+        done
+
+        if [ -z $1 ]; then
                 usage
                 exit
         fi
@@ -44,7 +57,7 @@ main() {
         name=${name%%\?*}
         echo "Download $name from Radiojavan"
 
-        rj-download $name
+        rj-download $name && mv "$name.mp3" "$output_dir/$name.mp3"
 }
 
 main $@
