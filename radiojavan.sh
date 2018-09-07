@@ -9,7 +9,7 @@
 # =======================================
 
 usage() {
-        echo "$(basename $0) [-o] [radiojavan music url, eg.]"
+        echo "$(basename $0) [-o] [radiojavan music url, e.g. https://www.radiojavan.com/mp3s/mp3/Bahram-24-Saat?start=768&index=0]"
         echo "  -o   create mp3 file in specific directory"
 
 }
