@@ -9,7 +9,9 @@
 # =======================================
 
 usage() {
-        echo "$(basename $0) [radiojavan music url]"
+        echo "$(basename $0) [-o] [radiojavan music url, eg.]"
+        echo "  -o   create mp3 file in specific directory"
+
 }
 
 rj-download-() {
@@ -44,7 +46,7 @@ main() {
                 esac
         done
 
-        for ((i=2; i<=$OPTIND; i++)); do
+        for ((i=2; i<=OPTIND; i++)); do
                 shift
         done
 
@@ -55,8 +57,12 @@ main() {
 
         name=$(basename $1)
         name=${name%%\?*}
-        echo "Download $name from Radiojavan"
+        echo "Download $name from Radiojavan to $output_dir"
 
+        if [ ! -d $output_dir ]; then
+                echo "invalid directory name: $output_dir"
+                exit 1
+        fi
         rj-download $name && mv "$name.mp3" "$output_dir/$name.mp3"
 }
 
