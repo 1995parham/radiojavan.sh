@@ -21,9 +21,9 @@ rj-download-() {
         echo Host-$2 with $3 Quality
 
         if [ -z $3 ]; then
-                status=$(curl -# -w "%{http_code}" -o "$1.mp3" "https://host$2.rjmusicmedia.com/media/mp3/$1.mp3")
+                status=$(curl -# -w "%{http_code}" -o "$1.mp3" "https://host$2.rjmusicmedia.com/media/mp3/$1.mp3" || echo 500)
         else
-                status=$(curl -# -w "%{http_code}" -o "$1.mp3" "https://host$2.rjmusicmedia.com/media/mp3/mp3-$3/$1.mp3")
+                status=$(curl -# -w "%{http_code}" -o "$1.mp3" "https://host$2.rjmusicmedia.com/media/mp3/mp3-$3/$1.mp3" || echo 500)
         fi
 
         if [ $status -ne 200 ]; then
