@@ -15,16 +15,14 @@ usage() {
 
 }
 
+rj_host="rj-mw1.com"
+
 # downloads a music that is given by $1. $2 specifies rj media host.
 # $3 specifies music quality, empty means a request url without quality.
 rj-download-() {
-        echo Host-$2 with $3 Quality
+        echo Host-$2
 
-        if [ -z $3 ]; then
-                status=$(curl -# -w "%{http_code}" -o "$1.mp3" "https://host$2.rjmusicmedia.com/media/mp3/$1.mp3" || echo 500)
-        else
-                status=$(curl -# -w "%{http_code}" -o "$1.mp3" "https://host$2.rjmusicmedia.com/media/mp3/mp3-$3/$1.mp3" || echo 500)
-        fi
+        status=$(curl -# -w "%{http_code}" -o "$1.mp3" "https://host$2.$rj_host/media/mp3/$1.mp3" || echo 500)
 
         if [ $status -ne 200 ]; then
                 echo $status
@@ -35,7 +33,7 @@ rj-download-() {
 }
 
 rj-download() {
-        rj-download- $1 1 256 || rj-download- $1 2 256 || rj-download- $1 1
+        rj-download- $1 1 || rj-download- $1 2 || rj-download- $1 3
 }
 
 main() {
