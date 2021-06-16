@@ -2,6 +2,8 @@
 
 **Music is Fun**
 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/1995parham/radiojavan.sh/lint?label=lint&logo=github&style=flat-square)
+
 ## Introduction
 
 [Radiojavan](https://www.radiojavan.com/) is an Iranian music website (like Spotify), and sometimes you want
