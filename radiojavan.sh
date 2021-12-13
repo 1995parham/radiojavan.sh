@@ -7,6 +7,8 @@
 #
 # [] Created By : Parham Alvani <parham.alvani@gmail.com>
 # =======================================
+# https://stackoverflow.com/questions/3822621/how-to-exit-if-a-command-failed
+set -e
 
 usage() {
 	echo "$(basename "$0") [-o] [track url in radiojavan, e.g. https://www.radiojavan.com/mp3s/mp3/Bahram-24-Saat?start=768&index=0]"
@@ -72,7 +74,11 @@ main() {
 		echo "invalid directory name: $output_dir"
 		exit 1
 	fi
-	rj-download "$name" && mv "$name.mp3" "$output_dir/$name.mp3"
+	rj-download "$name"
+
+	if [ "$output_dir" != "." ]; then
+		mv "$name.mp3" "$output_dir/$name.mp3"
+	fi
 }
 
 main "$@"
