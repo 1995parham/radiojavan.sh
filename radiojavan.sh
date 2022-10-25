@@ -24,7 +24,7 @@ rj_host="rj-mw1.com"
 rj-download-() {
 	echo "Host-$2"
 
-	status=$(curl -# -w "%{http_code}" -o "$1.mp3" "https://host$2.$rj_host/media/mp3/$1.mp3" || echo 500)
+	status=$(curl --tlsv1.2 -# -w "%{http_code}" -o "$1.mp3" "https://host$2.$rj_host/media/mp3/$1.mp3" || echo 500)
 
 	if [ "$status" -ne 200 ] || grep -Fxq "Not found" "$name.mp3"; then
 		echo "$status"
