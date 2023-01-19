@@ -10,10 +10,6 @@
 to download a music from it. In these times you can use this script. Please consider copyright of downloaded music.
 This script tries the following CDN of Radiojavan to find your given music, maybe they are changed in the future.
 
-1. host1.rjmusicmedia.com
-2. host2.rjmusicmedia.com
-3. host3.rjmusicmedia.com
-
 ## In Action
 
 ```bash
